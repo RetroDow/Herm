@@ -1,0 +1,424 @@
+﻿//Room name
+var room76 = {};
+room76.main = function () {
+    var navList = [77];
+    if (sc.getTimeline("bimbo").thisRoom) {
+        if (cl.c.chastity === null) {
+            nav.button({
+                "type": "btn",
+                "name": "blanket",
+                "left": 704,
+                "top": 472,
+                "width": 815,
+                "height": 583,
+                "image": "76_bimboRoom/blanket.png"
+            }, 76);
+            nav.bg("76_bimboRoom/sleeping1.jpg");
+        }
+        else {
+            nav.button({
+                "type": "btn",
+                "name": "blanketa",
+                "left": 704,
+                "top": 472,
+                "width": 815,
+                "height": 583,
+                "image": "76_bimboRoom/blanket.png"
+            }, 76);
+            nav.bg("76_bimboRoom/sleeping1a.jpg");
+        }
+    }
+    nav.buildnav(navList);
+};
+
+room76.btnclick = function (name) {
+    switch (name) {
+        case "blanketa":
+            nav.kill();
+            nav.bg("76_bimboRoom/cumcouple.jpg");
+            if (!daily.get("76bcum")) {
+                nav.button({
+                    "type": "tongue",
+                    "name": "bcum",
+                    "left": 1597,
+                    "top": 500,
+                    "width": 99,
+                    "height": 182,
+                    "image": "76_bimboRoom/bcum.webp"
+                }, 76);
+            }
+            if (!daily.get("76gcum")) {
+                nav.button({
+                    "type": "tongue",
+                    "name": "gcum",
+                    "left": 326,
+                    "top": 648,
+                    "width": 72,
+                    "height": 193,
+                    "image": "76_bimboRoom/gcum.webp"
+                }, 76);
+            }
+            break;
+        case "bcum":
+            daily.set("76bcum");
+            nav.killbutton("bcum");
+            levels.swallowCum("m", "tim");
+            chat(16, 76);
+            break;
+        case "gcum":
+            daily.set("76gcum");
+            nav.killbutton("gcum");
+            levels.swallowCum("m", "tim");
+            chat(17, 76);
+            break;
+        case "blanket":
+            nav.killbutton("blanket");
+            nav.bg("76_bimboRoom/sleeping2.jpg"); 
+            nav.button({
+                "type": "btn",
+                "name": "bimbo",
+                "left": 984,
+                "top": 470,
+                "width": 287,
+                "height": 415,
+                "image": "76_bimboRoom/sleeping2.png"
+            }, 76);
+            break;
+        case "bimbo":
+            nav.killbutton("bimbo");
+            nav.bg("76_bimboRoom/laying.jpg");
+            nav.button({
+                "type": "btn",
+                "name": "butthole",
+                "left": 923,
+                "top": 619,
+                "width": 163,
+                "height": 164,
+                "image": "76_bimboRoom/butthole.png"
+            }, 76);
+            nav.button({
+                "type": "btn",
+                "name": "pussy",
+                "left": 1084,
+                "top": 596,
+                "width": 258,
+                "height": 163,
+                "image": "76_bimboRoom/pussy.png"
+            }, 76);
+            break;
+        case "butthole":
+            if (gender.canUseCock()) {
+                if (sc.getMissionTask("bimbo", "fuck", 4).notStarted)
+                    sc.completeMissionTask("bimbo", "fuck", 4);
+                nav.killall();
+                nav.bg("76_bimboRoom/a1.gif");
+                chat(9, 76);
+            }
+            else if (cl.c.chastity !== null) {
+                chat(14, 76);
+            }
+            else {
+                chat(15, 76);
+            }
+            break;
+        case "pussy":
+            if (gender.canUseCock()) {
+                if (sc.getMissionTask("bimbo", "fuck", 3).notStarted)
+                    sc.completeMissionTask("bimbo", "fuck", 3);
+                nav.killall();
+                nav.bg("76_bimboRoom/p1.jpg");
+                chat(11, 76);
+            }
+            else if (cl.c.chastity !== null) {
+                chat(14, 76);
+            }
+            else {
+                chat(15, 76);
+            }
+            break;
+        default:
+            break;
+    }
+};
+
+room76.chatcatch = function (callback) {
+    switch (callback) {
+        case "bimbo2":
+            if (cl.c.chastity === null && cl.c.cock < 3) {
+                nav.killbutton("bimbo");
+                nav.button({
+                    "type": "img",
+                    "name": "bimbo",
+                    "left": 866,
+                    "top": 48,
+                    "width": 685,
+                    "height": 1032,
+                    "image": "76_bimboRoom/bimbo2.png"
+                }, 76);
+                chat(1, 76);
+            }
+            else {
+                nav.killbutton("bimbo");
+                nav.button({
+                    "type": "img",
+                    "name": "bimbo",
+                    "left": 866,
+                    "top": 48,
+                    "width": 685,
+                    "height": 1032,
+                    "image": "76_bimboRoom/bimbo1b.png"
+                }, 76);
+                if (cl.c.chastity !== null)
+                    chat(4, 76);
+                else if (cl.c.cock === 0)
+                    chat(5, 76);
+                else
+                    chat(6, 76);
+            }
+            break;
+        case "bimbo3":
+            nav.killbutton("bimbo");
+            nav.button({
+                "type": "img",
+                "name": "bimbo",
+                "left": 866,
+                "top": 48,
+                "width": 665,
+                "height": 1032,
+                "image": "76_bimboRoom/bimbo3.png"
+            }, 76);
+            gv.mod("arousal", 100);
+            break;
+        case "leave1":
+            sc.setstep("bimbo", 2);
+            char.room(0);
+            break;
+        case "titfuck":
+            nav.killbutton("bimbo");
+            nav.bg("76_bimboRoom/bedcock.jpg");
+            break;
+        case "titfuck1":
+            nav.bg("76_bimboRoom/bed.jpg");
+            nav.button({
+                "type": "img",
+                "name": "bimbo",
+                "left": 435,
+                "top": 0,
+                "width": 1400,
+                "height": 1080,
+                "image": "76_bimboRoom/76_boobjob.gif"
+            }, 76);
+            g.roomTimeout = setTimeout(function () { chat(7, 76); }, 5000);
+            break;
+        case "titfuck2":
+            nav.killbutton("bimbo");
+            nav.button({
+                "type": "img",
+                "name": "bimbo",
+                "left": 435,
+                "top": 0,
+                "width": 1400,
+                "height": 1080,
+                "image": "76_bimboRoom/76_boobjob1.gif"
+            }, 76);
+            g.roomTimeout = setTimeout(function () { room76.chatcatch("titfuck3"); }, 4600);
+            break;
+        case "titfuck3":
+            nav.killbutton("bimbo");
+            nav.bg("76_bimboRoom/room.jpg", "76_bimboRoom/roomNight.jpg");
+            nav.button({
+                "type": "img",
+                "name": "bimbo",
+                "left": 769,
+                "top": 73,
+                "width": 827,
+                "height": 1005,
+                "image": "76_bimboRoom/bimboCumface.png"
+            }, 76);
+            gv.mod("receiveBoobJob", 1);
+            cl.doCum(false);
+            chat(8, 76);
+            sc.setstep("bimbo", 2);
+            break;
+        case "leave":
+            nav.room(0);
+            break;
+        case "ass1":
+            nav.bg("76_bimboRoom/a2.jpg");
+            break;
+        case "ass2":
+            levels.fuckass("bimbo", "f");
+            cl.doCum(false);
+            nav.killall();
+            //nav.bg("76_bimboRoom/laying3.jpg");
+            nav.buildnav([77, 0]);
+            break;
+        case "pussy1":
+            nav.bg("76_bimboRoom/p1.gif");
+            break;
+        case "pussy2":
+            levels.fuckpussy("bimbo");
+            nav.bg("76_bimboRoom/p2.jpg");
+            break;
+        case "pussy3":
+            nav.bg("76_bimboRoom/p3.jpg");
+            cl.doCum(false);
+            nav.buildnav([77, 0]);
+            break;
+        default:
+            break;
+    }
+};
+
+room76.chat = function (chatID) {
+    var cArray = [
+        {
+            chatID: 0,
+            speaker: "bimbo",
+            text: "I'm so glad you came up. It's been so long since I've had any cum and I was wondering if you could help.",
+            button: [
+                { chatID: -1, text: "...", callback: "bimbo2" }
+            ]
+        },
+        {
+            chatID: 1,
+            speaker: "bimbo",
+            text: "I just need you to cum in my mouth.",
+            button: [
+                { chatID: 2, text: "...", callback: "bimbo3" }
+            ]
+        },
+        {
+            chatID: 2,
+            speaker: "bimbo",
+            text: "Cum over to my bed and slide that cock between my tits.",
+            button: [
+                { chatID: 6, text: "I can do that too.", callback: "titfuck" }
+            ]
+        },
+        {
+            chatID: 3,
+            speaker: "bimbo",
+            text: "Oh, it's all locked up. Well, I guess there's not much I can do with that. Too bad, I bet your cum would have been yummy!",
+            button: [
+                { chatID: -1, text: "oh yeah.. oh well [leave]", callback: "leave1" }
+            ]
+        },
+        {
+            chatID: 4,
+            speaker: "bimbo",
+            text: "Oh, I didn't realize you had a pussy! I thought you were one of those guys with tits. Oh well, I guess I'll get my cum from someone else.",
+            button: [
+                { chatID: -1, text: "oh yeah.. oh well [leave]", callback: "leave1" }
+            ]
+        },
+        {
+            chatID: 5,
+            speaker: "bimbo",
+            text: "It's soooo tiny! I was going to rub my titties all over it, but my tits are sooo big that little thing will get lost. Sorry honey. ",
+            button: [
+                { chatID: -1, text: "oh yeah.. oh well [leave]", callback: "leave1" }
+            ]
+        },
+        {
+            chatID: 6,
+            speaker: "bimbo",
+            text: "I love your cock! Are you going to slide it between my tits and feed me your cum?",
+            button: [
+                { chatID: -1, text: "Yes I am", callback: "titfuck1" }
+            ]
+        },
+        {
+            chatID: 7,
+            speaker: "bimbo",
+            text: "So are you going to feed me your cum?",
+            button: [
+                { chatID: -1, text: "Oh yeah, here it comes!", callback: "titfuck2" }
+            ]
+        },
+        {
+            chatID: 8,
+            speaker: "bimbo",
+            text: "I love your cum! I think I'll wear it for a while! Feel free to come back and use me anytime, sexy!",
+            button: [
+                { chatID: -1, text: "Sure [Leave]", callback: "leave" }
+            ]
+        },
+        {
+            chatID: 9,
+            speaker: "bimbo",
+            text: "zzZZZz zzZZZzzz",
+            button: [
+                { chatID: 10, text: "Fill her ass full of cum", callback: "ass1" }
+            ]
+        },
+        {
+            chatID: 10,
+            speaker: "thinking",
+            text: "She's going to be farting my cum all night.",
+            button: [
+                { chatID: -1, text: "...", callback: "ass2" }
+            ]
+        },
+        {
+            chatID: 11,
+            speaker: "bimbo",
+            text: "zzZZZz zzZZZzzz",
+            button: [
+                { chatID: 12, text: "She's going to be so tight laying like that. I have to be careful.", callback: "pussy1" }
+            ]
+        },
+        {
+            chatID: 12,
+            speaker: "bimbo",
+            text: "zzZZZz zzZZZzzz",
+            button: [
+                { chatID: 13, text: "So tight. I'm going to blow my load!", callback: "pussy2" }
+            ]
+        },
+        {
+            chatID: 13,
+            speaker: "thinking",
+            text: "I wonder if she'll notice the globs of cum on her ass in the morning.",
+            button: [
+                { chatID: -1, text: "[Finish]", callback: "pussy3" }
+            ]
+        },
+        {
+            chatID: 14,
+            speaker: "bimbo",
+            text: "zzZZZz zzZZZzzz",
+            button: [
+                { chatID: -1, text: "[My cock is all locked up. Can't do anything]", callback: "" }
+            ]
+        },
+        {
+            chatID: 15,
+            speaker: "bimbo",
+            text: "zzZZZz zzZZZzzz",
+            button: [
+                { chatID: -1, text: "[My little tiny cock won't please her; there's no point in even trying]", callback: "" }
+            ]
+        },
+        {
+            chatID: 16,
+            speaker: "thinking",
+            text: "Mmm. I do love the cream of some young guy. Creamy and smooth, with just a hint of sweetness. Perfect when it's straight from the source.",
+            button: [
+                { chatID: -1, text: "...", callback: "" }
+            ]
+        },
+        {
+            chatID: 17,
+            speaker: "thinking",
+            text: "Oh wow! That is a delicious mix of boy and girl cum! You get the thick nutty flavor from him and the delicate musky froth from her. These two should really bottle this up so everyone can partake in their yumminess.",
+            button: [
+                { chatID: -1, text: "...", callback: "" }
+            ]
+        }
+    ];
+    if (cArray.length > chatID && chatID > -1)
+        return cArray[chatID];
+    else
+        return [];
+};

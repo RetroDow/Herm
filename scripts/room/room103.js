@@ -1,0 +1,1287 @@
+﻿//const Work
+var room103 = {};
+
+room103.main = function () {
+    g.internal = false;
+    var jobapplyconst = gv.get("jobapplyconst");
+    if (jobapplyconst === 2) {
+        nav.bg("103_constSite/day1.jpg");
+        chat(1, 103);
+    }
+    else if (jobapplyconst > 4 && jobapplyconst < 100) {
+        g.internal = true;
+        room103.chatcatch("sweep");
+    }
+    else if (jobapplyconst === 100) {
+        if (sc.getMission("river", "bully").notStarted) {
+            nav.bg("103_constSite/day1.jpg");
+            chat(67, 103);
+        }
+        else {
+            g.internal = false;
+            room103.chatcatch("sweep");
+        }
+    }
+    else {
+        room103.chatcatch("sweep");
+    }
+    
+    //var thisRand = Math.floor(Math.random() * 10);
+    //if (thisRand === 1)
+    //    chat(1, 103);
+    //else if (thisRand === 2) {
+    //    nav.bg("103_constSite/103_topless.png");
+    //    chat(3, 103);
+    //}
+    //else
+    //    chat(0, 103);
+};
+
+room103.btnclick = function (name) {
+    switch (name) {
+        case "work":
+            if (gv.get("jobapplyconst") === 6) {
+                chat(65, 103);
+            }
+            else {
+                nav.killall();
+                nav.bg("103_constSite/sweep.jpg");
+                gv.mod("energy", -30);
+                chat(0, 103);
+            }
+            break;
+        case "work2":
+            nav.killall();
+            nav.bg("103_constSite/sweep.jpg");
+            gv.mod("energy", -30);
+            chat(12, 103);
+            break;
+        default:
+            break;
+        case "hole":
+            levels.mod("anal", 5);
+            chat(25, 103);
+            break;
+        case "pamphlet":
+            nav.killbutton("pamphlet");
+            nav.button({
+                "type": "img",
+                "name": "pamphlet2",
+                "left": 915,
+                "top": 50,
+                "width": 500,
+                "height": 800,
+                "image": "103_constSite/pamphlet.jpg"
+            }, 103);
+            chat(66, 103);
+            break;
+        case "fight1":
+            nav.killall();
+            chat(69, 103);
+            break;
+        case "rapeComplete":
+            chat(100, 103);
+            break;
+        case "gang":
+            if (g.internal === 5) {
+                nav.bg("103_constSite/gang5" + (cl.c.chastity === null ? "" : "_c") + ".jpg");
+            }
+            else if (g.internal === 6)
+                nav.bg("103_constSite/gang6.jpg");
+            else {
+                nav.killbutton("gang");
+                levels.anal(4, false, "m", true, "!man");
+                levels.anal(3, false, "m", true, "!man");
+                levels.anal(2, false, "m", false, "!man");
+                levels.anal(3, false, "m", true, "!man");
+                levels.oral(3, "m", "!man", true);
+                levels.oral(4, "m", "!man", true);
+                levels.oral(3, "m", "!man", true);
+                levels.oral(2, "m", "!man", false);
+                levels.oral(3, "m", "!man", true);
+                levels.gavetitjob("m", "!man");
+                levels.gavetitjob("m", "!man");
+                gv.mod("energy", -999);
+                chat(99, 103);
+            }
+            g.internal++;
+            break;
+    }
+};
+
+room103.chatcatch = function (callback) {
+    switch (callback) {
+        case "complete":
+            char.settime(17, 50);
+            levels.mod("fitness", 4);
+            gv.mod("jobapplyconst", 1);
+            daily.set("construction");
+            char.room(101);
+            break;
+        case "sweep":
+            nav.killall();
+            nav.bg("103_constSite/103_sweep.jpg");
+            if (sc.getMission("river", "bully").notStarted) {
+                if (g.internal) {
+                    nav.button({
+                        "type": "btn",
+                        "name": "hole",
+                        "left": 1302,
+                        "top": 531,
+                        "width": 135,
+                        "height": 124,
+                        "image": "103_constSite/holepussy.png",
+                    }, 103);
+                }
+                else {
+                    nav.button({
+                        "type": "btn",
+                        "name": "hole",
+                        "left": 1302,
+                        "top": 531,
+                        "width": 135,
+                        "height": 124,
+                        "image": "103_constSite/hole.png",
+                        "night": "103_constSite/holenight.png"
+                    }, 103);
+                }
+            }
+            else if (!gv.get("constructionMessage")) {
+                gv.set("constructionMessage", true);
+                chat(74, 103);
+            }
+            nav.button({
+                "type": "btn",
+                "name": "work",
+                "left": 315,
+                "top": 718,
+                "width": 513,
+                "height": 272,
+                "image": "103_constSite/work.png"
+            }, 103);
+            if (!gv.get("pamphletConstSite")) {
+                nav.button({
+                    "type": "btn",
+                    "name": "pamphlet",
+                    "left": 1165,
+                    "top": 877,
+                    "width": 97,
+                    "height": 82,
+                    "image": "103_constSite/pamphlet.png"
+                }, 103);
+            }
+            break;
+        case "endDay1":
+            char.room(103);
+            break;
+        case "moveDay1":
+            nav.bg("103_constSite/103_sweep.jpg");
+            break;
+        case "chat":
+            nav.killall();
+            switch (gv.get("jobapplyconst")) {
+                case 1:
+                case 2: //first day
+                    nav.bg("103_constSite/worker2.jpg");
+                    chat(13, 103);
+                    break;
+                case 3:
+                    nav.bg("103_constSite/worker1.jpg");
+                    chat(15, 103);
+                    break;
+                case 4:
+                    nav.bg("103_constSite/worker0.jpg");
+                    chat(19, 103);
+                    break;
+                case 5:
+                    chat(23, 103);
+                    break;
+                case 6:
+                    nav.bg("103_constSite/worker3.jpg");
+                    chat(99, 103);
+                    break;
+                default:
+                    if (cl.appearance() > 1) {
+                        switch (g.rand(0, 10)) {
+                            case 0:
+                                nav.kill();
+                                nav.bg("103_constSite/rapman0.jpg");
+                                chat(84, 103);
+                                break;
+                            case 1:
+                                nav.kill();
+                                nav.bg("103_constSite/rapman12.jpg");
+                                chat(85, 103);
+                                break;
+                            case 2:
+                                nav.bg("103_constSite/worker0.jpg");
+                                chat(86, 103);
+                                break;
+                            case 3:
+                                nav.bg("103_constSite/worker4.jpg");
+                                chat(87, 103);
+                                break;
+                            case 4:
+                                nav.bg("103_constSite/worker2.jpg");
+                                chat(90, 103);
+                                break;
+                            default:
+                                nav.bg("103_constSite/gang0.jpg");
+                                chat(93, 103);
+                                break;
+                        }
+                    }
+                    else {
+                        switch (g.rand(0, 4)) {
+                            case 0:
+                                nav.bg("103_constSite/worker2.jpg");
+                                chat(73, 103);
+                                break;
+                            case 1:
+                                nav.bg("103_constSite/worker0.jpg");
+                                chat(75, 103);
+                                break;
+                            default:
+                                if (sc.getLevel("tina") < 4) {
+                                    nav.bg("103_constSite/worker_tina0.jpg");
+                                    sc.modLevel("tina", 50);
+                                    chat(77, 103);
+                                }
+                                else if (sc.getLevel("tina") < 6) {
+                                    nav.bg("103_constSite/worker_tina0.jpg");
+                                    sc.modLevel("tina", 50);
+                                    chat(79, 103);
+                                }
+                                else {
+                                    nav.bg("103_constSite/worker_tina0.jpg");
+                                    sc.modLevel("tina", 50);
+                                    chat(82, 103);
+                                }
+                                break;
+
+                        }
+                        break;
+                    }
+            }
+            break;
+        case "work2shirt":
+            cl.c.shirt = g.pass;
+            cl.display();
+            room103.chatcatch("work2");
+            break;
+        case "work2":
+            nav.killall();
+            nav.bg("103_constSite/103_sweep.jpg");
+            if (sc.getMission("river", "bully").notStarted) {
+                if (g.internal) {
+                    nav.button({
+                        "type": "btn",
+                        "name": "hole",
+                        "left": 1302,
+                        "top": 531,
+                        "width": 135,
+                        "height": 124,
+                        "image": "103_constSite/holepussy.png",
+                    }, 103);
+                }
+                else {
+                    nav.button({
+                        "type": "btn",
+                        "name": "hole",
+                        "left": 1302,
+                        "top": 531,
+                        "width": 135,
+                        "height": 124,
+                        "image": "103_constSite/hole.png",
+                        "night": "103_constSite/holenight.png"
+                    }, 103);
+                }
+            }
+            nav.button({
+                "type": "btn",
+                "name": "work2",
+                "left": 315,
+                "top": 718,
+                "width": 513,
+                "height": 272,
+                "image": "103_constSite/work.png"
+            }, 103);
+            if (!gv.get("pamphletConstSite")) {
+                nav.button({
+                    "type": "btn",
+                    "name": "pamphlet",
+                    "left": 1165,
+                    "top": 877,
+                    "width": 97,
+                    "height": 82,
+                    "image": "103_constSite/pamphlet.png"
+                }, 103);
+            }
+            break;
+        case "lunch":
+            nav.killall();
+            nav.bg("103_constSite/lunch.jpg");
+            gv.mod("energy", 20);
+            break;
+        case "give20":
+            if (gv.get("money") > 19) {
+                levels.mod("charisma", 5);
+                gv.mod("money", -20);
+                chat(17, 103);
+            }
+            else {
+                chat(18, 103);
+            }
+            break;
+        case "enableHole":
+            g.internal = true;
+            break;
+        case "panties":
+            levels.mod("xdress", 5);
+            nav.bg("103_constSite/worker4.jpg");
+            break;
+        case "hole0":
+            nav.killall();
+            nav.bg("103_constSite/hole0.jpg");
+            break;
+        case "hole1":
+        case "hole4":
+        case "hole5":
+        case "hole7":
+        case "hole8":
+        case "hole9":
+        case "hole10":
+        case "hole11":
+        case "hole12":
+        case "hole13":
+        case "hole14":
+        case "hole16":
+        case "fight2":
+        case "fight3":
+        case "fight4":
+        case "worker_tina1":
+        case "worker_tina2":
+        case "gang1":
+            nav.bg("103_constSite/" + callback + ".jpg");
+            break;
+        case "gang2":
+        case "gang3":
+            nav.bg("103_constSite/" + callback + (cl.c.chastity === null ? "" : "_c") + ".jpg");
+            break;
+        case "hole2":
+        case "hole3":
+            if (cl.pantiesTxt() === "panties")
+                nav.bg("103_constSite/" + callback + "_" + (cl.c.panties === "c" ? "c" : "p") + ".jpg");
+            else
+                nav.bg("103_constSite/" + callback + ".jpg");
+            break;
+        case "hole6":
+            cl.nude();
+            char.settime(23, 7);
+            nav.bg("103_constSite/" + callback + ".jpg");
+            break;
+        case "hole15":
+            cl.undo();
+            nav.bg("103_constSite/" + callback + ".jpg");
+            break;
+        case "hole17":
+            gv.mod("money", 200);
+            char.addtime(67);
+            sc.show("missy");
+            gv.set("jobapplynurse", 2);
+            gv.set("jobapplybeaver", 2);
+            gv.set("jobapplyconst", 100);
+            missy.set("activeCase", 2);
+            missy.set("activeCaseComplete", 0);
+            missy.set("reusableCaseCounter", 0);
+            g.roomMapAccess(203, true, true);
+            char.room(10);
+            break;
+        case "adddom":
+            levels.mod("dom", 5);
+            break;
+        case "addsub":
+            levels.mod("sub", 5);
+            break;
+        
+        case "pamphlet":
+            nav.killbutton("pamphlet2");
+            gv.mod("pamphletConstSite", true);
+            levels.mod("pi", 20);
+            break;
+        case "intPlus":
+            levels.mod("pi", 15);
+            break;
+        case "fight0":
+            nav.bg("103_constSite/fight0.jpg");
+            break;
+        case "fight1":
+            levels.mod("fame", 20);
+            levels.mod("xdress", 15);
+            nav.bg("103_constSite/fight1.jpg");
+            nav.next("fight1");
+            break;
+        case "fightEnd":
+            sc.show("river");
+            sc.show("tina");
+            sc.startMission("river", "bully");
+            sc.startMission("tina", "cat");
+            sc.completeMissionTask("tina", "cat", 0);
+            g.internal = false;
+            room103.chatcatch("sweep");
+            break;
+        case "rapeman0":
+            nav.bg("103_constSite/103_sweep.jpg");
+            rape.init(0, "street", 103, "rapeComplete");
+            break;
+        case "rapeman12":
+            nav.bg("103_constSite/103_sweep.jpg");
+            rape.init(12, "street", 103, "rapeComplete");
+            break;
+        case "tits":
+            levels.mod("xdress", 20);
+            g.pass = cl.c.shirt;
+            cl.c.shirt = null;
+            zcl.displayMain(100, 800, .26, "clothes", true);
+            break;
+        case "gang4":
+            nav.bg("103_constSite/gang4.jpg");
+            g.internal = 5;
+            nav.next("gang");
+            break;
+        case "leave":
+            char.settime(15, 12);
+            char.room(0);
+            break;
+        default:
+            break;
+    }
+};
+
+room103.chat = function (chatID) {
+    var cArray = [
+        {
+            chatID: 0,
+            speaker: "thinking",
+            text: "This sucks.",
+            button: [
+                { chatID: -1, text: "Chat with co-workers", callback: "chat" },
+                { chatID: 11, text: "Take lunch", callback: "lunch" },
+            ]
+        },
+        {
+            chatID: 1,
+            speaker: "river",
+            text: "Oh hey hey hey! If it isn't the high school dweeb. I didn't know you knew how to use tools. I always assumed you were too weak. So do you have a forklift license?",
+            button: [
+                { chatID: 2, text: "No", callback: "" }
+            ]
+        },
+        {
+            chatID: 2,
+            speaker: "river",
+            text: "General contractor's license?",
+            button: [
+                { chatID: 3, text: "No", callback: "" }
+            ]
+        },
+        {
+            chatID: 3,
+            speaker: "river",
+            text: "Any heavy equipment licenses?",
+            button: [
+                { chatID: 4, text: "No", callback: "" }
+            ]
+        },
+        {
+            chatID: 4,
+            speaker: "river",
+            text: "Welding?",
+            button: [
+                { chatID: 5, text: "No", callback: "" }
+            ]
+        },
+        {
+            chatID: 5,
+            speaker: "river",
+            text: "Worked on construction sites?",
+            button: [
+                { chatID: 6, text: "No", callback: "" }
+            ]
+        },
+        {
+            chatID: 6,
+            speaker: "river",
+            text: "Ever swung a hammer?",
+            button: [
+                { chatID: 7, text: "No", callback: "" }
+            ]
+        },
+        {
+            chatID: 7,
+            speaker: "river",
+            text: "Well, what do you do?",
+            button: [
+                { chatID: 8, text: "I don't know. Anything you need?", callback: "" }
+            ]
+        },
+        {
+            chatID: 8,
+            speaker: "river",
+            text: "Well, fuck. I don't know why the boss man keeps hiring losers, but here we are. I guess you can sweep up. Normally that job is reserved for chicks, but I got quite a mess that needs cleaning and no one I can spare. Come follow me.",
+            button: [
+                { chatID: 9, text: "...ok", callback: "moveDay1" }
+            ]
+        },
+        {
+            chatID: 9,
+            speaker: "river",
+            text: "Well, fuck. I don't know why the boss man keeps hiring losers, but here we are. I guess you can sweep up. Normally that job is reserved for chicks, but I got quite a mess that needs cleaning and no one I can spare. Come follow me.",
+            button: [
+                { chatID: 10, text: "...ok", callback: "" }
+            ]
+        },
+        {
+            chatID: 10,
+            speaker: "river",
+            text: "Here's the pile of dirt. Sweep well, pussy. And don't fuck around.",
+            button: [
+                { chatID: -1, text: "...ok", callback: "sweep" }
+            ]
+        },
+        {
+            chatID: 11,
+            speaker: "thinking",
+            text: "Best part of the day, eating.",
+            button: [
+                { chatID: -1, text: "...", callback: "work2" }
+            ]
+        },
+        {
+            chatID: 12,
+            speaker: "thinking",
+            text: "I'm so tired and sweaty. I hate this place.",
+            button: [
+                { chatID: -1, text: "...", callback: "complete" }
+            ]
+        },
+        {
+            chatID: 13,
+            speaker: "construction",
+            text: "Hey slick, just checking out the site. Lotta fucking dirt here. You got any coke?",
+            button: [
+                { chatID: 14, text: "Oh, no. I didn't bring any soda with me.", callback: "" }
+            ]
+        },
+        {
+            chatID: 14,
+            speaker: "construction",
+            text: "What? Never mind. Get back to work. If you have time to lean, you have time to clean.",
+            button: [
+                { chatID: -1, text: "Ok.", callback: "work2" }
+            ]
+        },
+        {
+            chatID: 15,
+            speaker: "!fatdogguy",
+            text: "Hey. New guy. I'm collecting money for Jim, who's dying of cancer. Do you think you could spare $20?",
+            button: [
+                { chatID: -1, text: "Sure. Here's $20", callback: "give20" },
+                { chatID: 16, text: "No. I don't even know Jim", callback: "intPlus" }
+            ]
+        },
+        {
+            chatID: 16,
+            speaker: "!fatdogguy",
+            text: "Fucking fag. I hope you die of cancer. Go fuck yourself.",
+            button: [
+                { chatID: -1, text: "Ouch. Bye I guess.", callback: "work2" },
+            ]
+        },
+        {
+            chatID: 17,
+            speaker: "!fatdogguy",
+            text: "I'll add this to Jim's fund. You're a really great dude. Thanks, buddy.",
+            button: [
+                { chatID: -1, text: "No problem.", callback: "work2" },
+            ]
+        },
+        {
+            chatID: 18,
+            speaker: "me",
+            text: "I don't seem to have that much money. You know money's tight.",
+            button: [
+                { chatID: 16, text: "...", callback: "" },
+            ]
+        },
+        {
+            chatID: 19,
+            speaker: "!constworker0",
+            text: "Oh hi. You're new here, right? How do you like working at Burly Construction?",
+            button: [
+                { chatID: 20, text: "I'm loving it here!", callback: "" },
+                { chatID: 21, text: "So lame. I don't want to work here anymore!", callback: "" },
+            ]
+        },
+        {
+            chatID: 20,
+            speaker: "!constworker0",
+            text: "That's nice. It's always great to find a job you like. If you ever get bored Annika sometimes does strip shows on the other side of that pipe. You might be able to crawl in and take a peek.",
+            button: [
+                { chatID: 22, text: "Oh thanks!", callback: "enableHole" },
+            ]
+        },
+        {
+            chatID: 21,
+            speaker: "!constworker0",
+            text: "That sucks. You know what might make this better. If you ever get bored Annika sometimes does strip shows on the other side of that pipe. You might be able to crawl in and take a peek.",
+            button: [
+                { chatID: 22, text: "Oh thanks!", callback: "enableHole" },
+            ]
+        },
+        {
+            chatID: 22,
+            speaker: "!constworker0",
+            text: "Also, if Fatty McGillicutty asks for a donation tell him no. He's just trying to scam money.",
+            button: [
+                { chatID: -1, text: "Good to know. Well, back to work", callback: "work2" },
+            ]
+        },
+        {
+            chatID: 23,
+            speaker: "random",
+            text: "Check this out new guy. Tony wears panties!",
+            button: [
+                { chatID: 24, text: "Huh?", callback: "panties" },
+            ]
+        },
+        {
+            chatID: 24,
+            speaker: "random",
+            text: "What the fuck! You said you wouldn't tell anyone! Fuck off!",
+            button: [
+                { chatID: -1, text: "Nice", callback: "work2" },
+            ]
+        },
+        {
+            chatID: 25,
+            speaker: "thinking",
+            text: "I wonder what's on the other side of that hole. I guess I'll take a peek. Can't hurt anything.",
+            button: [
+                { chatID: 26, text: "[Crawl in]", callback: "hole0" },
+            ]
+        },
+        {
+            chatID: 26,
+            speaker: "thinking",
+            text: "There's nothing there. I thought I saw something. I better back out before I get... Fuck, I'm stuck pretty good here. Maybe I can wiggle... Nope. I better swallow my pride and call for help.",
+            button: [
+                { chatID: 27, text: "...", callback: "" },
+            ]
+        },
+        {
+            chatID: 27,
+            speaker: "me",
+            text: "HELP! Someone, help!",
+            button: [
+                { chatID: 28, text: "...", callback: "hole1" },
+            ]
+        },
+        {
+            chatID: 28,
+            speaker: "random",
+            text: "Qué pasa? What are you doing in there?",
+            button: [
+                { chatID: 29, text: "I was just checking some stuff. Can you get me out?", callback: "hole0" },
+            ]
+        },
+        {
+            chatID: 29,
+            speaker: "random",
+            text: "Crazy gringo. Always fucking around at the worksite.",
+            button: [
+                { chatID: 30, text: "Please just help me out of here!", callback: "" },
+            ]
+        },
+        {
+            chatID: 30,
+            speaker: "me",
+            text: "Hey! My pants are slipping. Grab my leg, not my pants! Hey. Why are you grabbing my underwear? Stop. What are you doing? Pull my pants back up! Hey! Are you still there?",
+            button: [
+                { chatID: 31, text: "...", callback: "hole2" },
+            ]
+        },
+        {
+            chatID: 31,
+            speaker: "me",
+            text: "You better still be there! Hey! Get me out and give me back my pants and " +
+                cl.pantiesTxt() + " You better not have left me here!",
+            button: [
+                { chatID: 32, text: "...", callback: "hole3" },
+            ]
+        },
+        {
+            chatID: 32,
+            speaker: "river",
+            text: "Well, well, well. What do we have here? I always knew you were queer, but I didn't think you would do that stuff here.",
+            button: [
+                { chatID: 33, text: "It's not me! I was just looking through this hole and some dude stole my clothes! Just get me out of here!", callback: "hole4" },
+            ]
+        },
+        {
+            chatID: 33,
+            speaker: "river",
+            text: "You know you can just walk around the wall. You didn't have to climb into the pipe to look on the other side. Now do you want to change your story?",
+            button: [
+                { chatID: 34, text: "Just get me out " + sc.n("river") + "!", callback: "" },
+            ]
+        },
+        {
+            chatID: 34,
+            speaker: "river",
+            text: "Sure. I'll get you out. Just got to do one little thing first.",
+            button: [
+                { chatID: 35, text: "What?", callback: "hole5" },
+            ]
+        },
+        {
+            chatID: 35,
+            speaker: "river",
+            text: "We've been looking for someone like you...",
+            button: [
+                { chatID: 36, text: "Huh?", callback: "hole6" },
+            ]
+        },
+        {
+            chatID: 36,
+            speaker: "thinking",
+            text: "What's happening to me? I feel so strange...",
+            button: [
+                { chatID: 37, text: "...", callback: "" },
+            ]
+        },
+        {
+            chatID: 37,
+            speaker: "cult",
+            text: "No. It's your turn to carry him. I carried the last one.",
+            button: [
+                { chatID: 38, text: "...", callback: "" },
+            ]
+        },
+        {
+            chatID: 38,
+            speaker: "cult",
+            text: "Stop fighting. We each should just take turns. That's why they sent four of us. Why do you have to make it so difficult? " + sc.n("ubel") + " warned us not to fuck up again. Let's just take him to the cult compound and don't get caught. Remember what happened last time you idiots messed this up?",
+            button: [
+                { chatID: 39, text: "Wha...", callback: "hole7" },
+            ]
+        },
+        {
+            chatID: 39,
+            speaker: "cult",
+            text: "Awww crap is he waking up? I saw him move.",
+            button: [
+                { chatID: 40, text: "Who...", callback: "hole8" },
+            ]
+        },
+        {
+            chatID: 40,
+            speaker: "cult",
+            text: "Doesn't matter. I'll just inject some more etorphine. Then it's your turn to carry him.",
+            button: [
+                { chatID: 41, text: "No. I've got to get out of here.", callback: "hole9" },
+            ]
+        },
+        {
+            chatID: 41,
+            speaker: "missy",
+            text: "You boys better run out of here and leave that poor kid alone.",
+            button: [
+                { chatID: 42, text: "?", callback: "hole10" },
+            ]
+        },
+        {
+            chatID: 42,
+            speaker: "cult",
+            text: "Aw crap it's " + sc.n("missy") + ". You know you don't stand a chance against four of us.",
+            button: [
+                { chatID: 64, text: "...", callback: "hole11" },
+            ]
+        },
+        {
+            chatID: 43,
+            speaker: "missy",
+            text: "You don't stand a chance!",
+            button: [
+                { chatID: 44, text: "...", callback: "hole13" },
+            ]
+        },
+        {
+            chatID: 44,
+            speaker: "missy",
+            text: "Hiiiaaa",
+            button: [
+                { chatID: 45, text: "...", callback: "hole14" },
+            ]
+        },
+        {
+            chatID: 45,
+            speaker: "missy",
+            text: "Hi, I'm " + sc.n("missy") + ". You can get dressed now. Do you know what the cult wanted from you?",
+            button: [
+                { chatID: 46, text: "Oh. Thanks... I don't know. One minute " + sc.n("river") + " was messing with me, the next I'm naked in the woods.", callback: "" },
+            ]
+        },
+        {
+            chatID: 46,
+            speaker: "missy",
+            text: "Hmm. From the looks of you my guess would be another one for their little ritual.",
+            button: [
+                { chatID: 47, text: "Ritual? Like were they going to kill me?", callback: "" },
+            ]
+        },
+        {
+            chatID: 47,
+            speaker: "missy",
+            text: "It's not that kind of ritual. It's not safe here. Let me take you home, kid.",
+            button: [
+                { chatID: 48, text: "Ok.", callback: "hole15" },
+            ]
+        },
+        {
+            chatID: 48,
+            speaker: "missy",
+            text: "... So that's how I found him. I didn't want him as just another failed ritual.",
+            button: [
+                { chatID: 49, text: "...", callback: "" },
+            ]
+        },
+        {
+            chatID: 49,
+            speaker: "landlord",
+            text: "I'm so thankful you were there. It would have been terrible if he ended up like his father. He really is too delicate to be working at a construction site. I'm sure those big mean men just teased him all day. If only there was a job where someone could look after him so he didn't get into trouble.",
+            button: [
+                { chatID: 50, text: "...", callback: "" },
+            ]
+        },
+        {
+            chatID: 50,
+            speaker: "missy",
+            text: "I'm going to pay this " + sc.n("river") + " a visit and let him know to leave this one alone if he wants to keep his dick attached to his body. I'm sure he's fine to go back working at the construction site if he wants. Just be careful. Not everyone works for C.U.M.",
+            button: [
+                { chatID: 51, text: "C.U.M?", callback: "" },
+            ]
+        },
+        {
+            chatID: 51,
+            speaker: "missy",
+            text: "It's the Cult that tried to kidnap you. Terrible bunch, but you'll be fine. Just stay away from the forest and keep your wits about you.",
+            button: [
+                { chatID: 52, text: "Ok... Couldn't we go to the police?", callback: "" },
+            ]
+        },
+        {
+            chatID: 52,
+            speaker: "missy",
+            text: "Hahaha, I wish. Stay away from them too. They're part of this. I know someone that escaped from the cult and ran to the police only to be dragged back to their compound by the police.",
+            button: [
+                { chatID: 53, text: "Oh.", callback: "" },
+            ]
+        },
+        {
+            chatID: 53,
+            speaker: "landlord",
+            text: "Isn't there anything you can do to keep an eye on him? I had made a deal with them to leave these kids alone, but it looks like they're getting desperate. Do you know anyone that can watch out for him that's cheap? We don't have a lot of money, but I could figure something out.",
+            button: [
+                { chatID: 54, text: "I don't need to be watched.", callback: "" },
+            ]
+        },
+        {
+            chatID: 54,
+            speaker: "landlord",
+            text: "You don't know what you need. I'll do anything to keep these kids safe.",
+            button: [
+                { chatID: 55, text: "Hrumph", callback: "" },
+            ]
+        },
+        {
+            chatID: 55,
+            speaker: "missy",
+            text: "The only way he's safe is if we take down Ubel and destroy the Cult. I've been trying, but I need more help. It's just too big for me and my partners.",
+            button: [
+                { chatID: 56, text: "...", callback: "" },
+            ]
+        },
+        {
+            chatID: 56,
+            speaker: "landlord",
+            text: sc.n("me") + " could help. Like you said it's too big of a job without some help.",
+            button: [
+                { chatID: 57, text: "That would be awesome! I can help take them down.", callback: "adddom" },
+                { chatID: 58, text: "That sounds dangerous. I don't think I can do it.", callback: "addsub" },
+            ]
+        },
+        {
+            chatID: 57,
+            speaker: "missy",
+            text: "Well... There will be danger, and I can't guarantee your safety... but you know what you're getting into.",
+            button: [
+                { chatID: 59, text: "Sweet!", callback: "" },
+            ]
+        },
+        {
+            chatID: 58,
+            speaker: "landlord",
+            text: "You can't just sit at home all day and wait for " + sc.n("missy") + " to save you. It's best that you're around someone strong that can take care of you when I'm not around. I'll hear no more whining, you're going to work for " + sc.n("missy") + " if she'll have you.",
+            button: [
+                { chatID: 59, text: "Yes " + sc.n("landlord"), callback: "" },
+            ]
+        },
+        {
+            chatID: 59,
+            speaker: "missy",
+            text: "Working as one of my private investigators won't be easy. I'm going to have to break you down and rebuild you into something I can use. It'll be brutal and hard at times, but rewarding. I'm not going to lie, you will be put in danger, but I'll do everything I can to make sure you're ready for that danger.",
+            button: [
+                { chatID: 60, text: "Hmmm", callback: "" },
+            ]
+        },
+        {
+            chatID: 60,
+            speaker: "missy",
+            text: "You'll need a Private Investigator License from city hall and a willingness to do everything I tell you without question. No matter what! Can you do that?",
+            button: [
+                { chatID: 61, text: "Uhhh", callback: "" },
+            ]
+        },
+        {
+            chatID: 61,
+            speaker: "landlord",
+            text: "Stop stammering and answer the nice lady that saved your life. Sometimes I feel I have to do everything for him. He can do that. He needs to get out of this house and stop being so lazy. I'll even give him the money for the license. Now thank the nice lady and get to bed. It's getting late.",
+            button: [
+                { chatID: 62, text: "Yes " + sc.n("landlord") + ". I'll do it.", callback: "" },
+            ]
+        },
+        {
+            chatID: 62,
+            speaker: "missy",
+            text: "Good. Get the license from city hall and meet with my receptionist. She'll help you on the next step.",
+            button: [
+                { chatID: 63, text: "Thank you.", callback: "hole16" },
+            ]
+        },
+        {
+            chatID: 63,
+            speaker: "thinking",
+            text: "I'll have to go to city hall and buy a license, then visit " + sc.n("missy") + " at her work. I'm so excited, but a little scared. What if she doesn't like how I work, or I'm too weak to do the job. I'll have to try extra hard to impress her!",
+            button: [
+                { chatID: -1, text: "[Go to bed]", callback: "hole17" },
+            ]
+        },
+        {
+            chatID: 64,
+            speaker: "cult",
+            text: "Ok. You don't stand a chance against the two of us.",
+            button: [
+                { chatID: 43, text: "...", callback: "hole12" },
+            ]
+        },
+        {
+            chatID: 65,
+            speaker: "thinking",
+            text: "Is that a hairy pussy over there in the pipe? I gotta take a closer look!",
+            button: [
+                { chatID: 26, text: "[Crawl in]", callback: "hole0" },
+            ]
+        },
+        {
+            chatID: 66,
+            speaker: "thinking",
+            text: "This is a weird flyer. I wonder who Aurora Kirei is. Hopefully they don't eat her.",
+            button: [
+                { chatID: -1, text: "[Toss it aside]", callback: "pamphlet" },
+            ]
+        },
+        {
+            chatID: 67,
+            speaker: "river",
+            text: "What are you doing back, loser? I thought after you showed everyone your ass you would never show your face around here. Get lost, fuckwad.",
+            button: [
+                { chatID: 68, text: "You tried to kidnap me! You should be in jail!", callback: "fight0" },
+            ]
+        },
+        {
+            chatID: 68,
+            speaker: "river",
+            text: "Don't come to my job site and start yelling lies. I'm going to beat your ass like I should have done in the first place.",
+            button: [
+                { chatID: -1, text: "Huh?", callback: "fight1" },
+            ]
+        },
+        {
+            chatID: 69,
+            speaker: "river",
+            text: "Hey everyone! Look at this loser! Hahaha I hope his underwear holds up, 'cause it's a long fall!",
+            button: [
+                { chatID: 70, text: "Why I oughta", callback: "fight2" },
+            ]
+        },
+        {
+            chatID: 70,
+            speaker: "tina",
+            text: sc.n("river") + "! Take him down now! I don't know why you have to bully everyone around here, but leave " + sc.n("me") + " alone!",
+            button: [
+                { chatID: 71, text: "...", callback: "fight3" },
+            ]
+        },
+        {
+            chatID: 71,
+            speaker: "river",
+            text: "Sure " + sc.n("tina") + ". I was just playing around with my new buddy. You know how we like to joke around here. I was just going to take him down so he can get back to work.",
+            button: [
+                { chatID: 72, text: "I wasn't playing.", callback: "fight4" },
+            ]
+        },
+        {
+            chatID: 72,
+            speaker: "river",
+            text: "Hrumph! Always having a girl save you. You're lucky this time, chode sucker. I don't even know why you come around here. Ain't no one wants you around. You can work today, but if you come back I'm going to make your life hell! Later, loser!",
+            button: [
+                { chatID: -1, text: "...", callback: "fightEnd" },
+            ]
+        },
+        {
+            chatID: 73,
+            speaker: "construction",
+            text: "You know. I started by cleaning out construction sites, but with a lot of hard work and my dad's help I bought my own. Now I get to fuck all kinds of bitches.",
+            button: [
+                { chatID: -1, text: "Cool", callback: "work2" },
+            ]
+        },
+        {
+            chatID: 74,
+            speaker: "thinking",
+            text: "This is so dumb. I don't know why I'm sweeping here when I should be working at Missy's. This job is, at best, a side hustle. I really should be spending my day with her.",
+            button: [
+                { chatID: -1, text: "I should work at Missy's", callback: "" },
+            ]
+        },
+        {
+            chatID: 75,
+            speaker: "!constworker0",
+            text: "This job wouldn't be so bad if not for the constant groping by all these perverts. I can't say how many times I've had to tell someone that I'm not going to suck their dick!",
+            button: [
+                { chatID: -1, text: "They're terrible", callback: "work2" },
+                { chatID: 76, text: "So... Do you want to suck my dick?", callback: "" },
+            ]
+        },
+        {
+            chatID: 76,
+            speaker: "!constworker0",
+            text: "Grrrr!",
+            button: [
+                { chatID: -1, text: "...", callback: "work2" },
+            ]
+        },
+        {
+            chatID: 77,
+            speaker: "tina",
+            text: "Hey! So glad there's a real man around here. I get so tired of all the mean guys!",
+            button: [
+                { chatID: -1, text: "I come here just to see you each day.", callback: "work2" },
+                { chatID: 78, text: "Want to make my day better [Need level 5]", callback: "" },
+            ]
+        },
+        {
+            chatID: 78,
+            speaker: "tina",
+            text: "You're the cutest man I know!",
+            button: [
+                { chatID: -1, text: "Awww. You think I'm cute!", callback: "work2" },
+            ]
+        },
+        {
+            chatID: 79,
+            speaker: "tina",
+            text: "Hey! So glad there's a real man around here. I get so tired of all the mean guys!",
+            button: [
+                { chatID: 80, text: "Want to make my day better?", callback: "worker_tina1" },
+                { chatID: -1, text: "I come here just to see you each day.", callback: "work2" },
+            ]
+        },
+        {
+            chatID: 80,
+            speaker: "tina",
+            text: "Hopefully titties make your day a little better!",
+            button: [
+                { chatID: -1, text: "They so do!", callback: "work2" },
+                { chatID: 81, text: "Want to make it even better? [Need level 7]", callback: "" },
+            ]
+        },
+        {
+            chatID: 81,
+            speaker: "tina",
+            text: "Maybe another day, handsome! Now back to work so I can pay you!",
+            button: [
+                { chatID: -1, text: "Ok, ok", callback: "work2" },
+            ]
+        },
+        {
+            chatID: 82,
+            speaker: "tina",
+            text: "Hey sexy! God, you make me so hot! I love seeing you!",
+            button: [
+                { chatID: 83, text: "I love seeing you too. I want to see more of you?", callback: "worker_tina2" },
+                { chatID: -1, text: "Cool", callback: "work2" },
+
+            ]
+        },
+        {
+            chatID: 83,
+            speaker: "tina",
+            text: "Hopefully you love seeing my tight little kitty! Can't wait to see you after work. I love the smell of sweaty men. *wink*",
+            button: [
+                { chatID: -1, text: "Cool", callback: "work2" },
+            ]
+        },
+        {
+            chatID: 84,
+            speaker: "!rape0",
+            text: "I couldn't help but notice that you look like a bitch. And you know bitches need cock!",
+            button: [
+                { chatID: -1, text: "What?", callback: "rapeman0" },
+            ]
+        },
+        {
+            chatID: 85,
+            speaker: "!rape12",
+            text: "HEY! I heard you're the slut around here! I need something to cum in before I lose my mind!",
+            button: [
+                { chatID: -1, text: "What?", callback: "rapeman12" },
+            ]
+        },
+        {
+            chatID: 86,
+            speaker: "!constworker0",
+            text: "I'm so glad you're here. Ever since you've come out as a cum hungry slut all the guys have focused on fucking you! I don't know what changed since you started working here, but thank you so much! Fighting away dicks all day is tiring!",
+            button: [
+                { chatID: -1, text: "...you're welcome", callback: "work2" },
+            ]
+        },
+        {
+            chatID: 87,
+            speaker: "random",
+            text: "Hey look! Tony wears panties just like the site cum rag!",
+            button: [
+                { chatID: 88, text: "!", callback: "" },
+            ]
+        },
+        {
+            chatID: 88,
+            speaker: "!boy",
+            text: "Hey! I'm not like the cum rag over there! I just like how they feel! Now fuck off so I can get back to work!",
+            button: [
+                { chatID: -1, text: "*sigh*", callback: "work2" },
+            ]
+        },
+        {
+            chatID: 89,
+            speaker: "boy",
+            text: "Hey! I'm not like the cum rag over there! I just like how they feel! Now fuck off so I can get back to work!",
+            button: [
+                { chatID: -1, text: "*sigh*", callback: "work2" },
+            ]
+        },
+        {
+            chatID: 90,
+            speaker: "construction",
+            text: "Hey! The site cum rag! I can't tell you how much I like you working here! You see the boys get all pent up and if they don't fuck something they don't work all that great. Now show me them tits!",
+            button: [
+                { chatID: 92, text: "[Show him your tits]", callback: "tits" },
+                { chatID: 91, text: "Oh. I don't do that.", callback: "" },
+            ]
+        },
+        {
+            chatID: 91,
+            speaker: "construction",
+            text: "Lame. It's ok, I'll just get " + sc.n("tina") + " to show me her tits. Maybe blow me too!",
+            button: [
+                { chatID: -1, text: "*sigh*", callback: "work2" },
+            ]
+        },
+        {
+            chatID: 92,
+            speaker: "construction",
+            text: "Nice. I'm starting to get hard. I'm going to go fuck that slut " + sc.n("tina") + "! Later!",
+            button: [
+                { chatID: -1, text: "*sigh*", callback: "work2shirt" },
+            ]
+        },
+        {
+            chatID: 93,
+            speaker: "boy",
+            text: "Me and some of the guys were wondering if you're ok if we bang you really quick. Watching you bend over and sweep really is making our dicks hard.",
+            button: [
+                { chatID: 95, text: "Hmmmm. sure", callback: "" },
+                { chatID: 94, text: "What? No. I'm not that kind of girl!", callback: "" },
+            ]
+        },
+        {
+            chatID: 94,
+            speaker: "boy",
+            text: "Awwww. Ok!",
+            button: [
+                { chatID: -1, text: "*sigh*", callback: "work2" },
+            ]
+        },
+        {
+            chatID: 95,
+            speaker: "boy",
+            text: "Sweet! I'll go get them!",
+            button: [
+                { chatID: 96, text: "...", callback: "gang1" },
+            ]
+        },
+        {
+            chatID: 96,
+            speaker: "boy",
+            text: "Hey everyone! She said we could fuck her! No limits!",
+            button: [
+                { chatID: 97, text: "*oh shit*", callback: "gang2" },
+            ]
+        },
+        {
+            chatID: 97,
+            speaker: "me",
+            text: "Well it looks like I'm about to get penetrated. Line up boys and pick a hole to fuck.",
+            button: [
+                { chatID: 98, text: "...", callback: "gang3" },
+            ]
+        },
+        {
+            chatID: 98,
+            speaker: "boy",
+            text: "Bring that ass over here. I'm so going to leave you in a puddle of cum and spit for the next guy!",
+            button: [
+                { chatID: -1, text: "*sissy squeal of joy*", callback: "gang4" },
+            ]
+        },
+        {
+            chatID: 99,
+            speaker: "thinking",
+            text: "I'm way too tired to finish sweeping. I'm just going to drag myself home by my lips and shower off all this cum! I wonder if anyone here still respects me.",
+            button: [
+                { chatID: -1, text: "[Get dressed and leave]", callback: "leave" },
+            ]
+        },
+        {
+            chatID: 100,
+            speaker: "thinking",
+            text: "Who does that?! Who just rapes someone while they're working! Fuck this place. I'm going home!",
+            button: [
+                { chatID: -1, text: "[Run away]", callback: "leave" },
+            ]
+        },
+    ];
+
+    return cArray[chatID];
+};
